@@ -24,7 +24,7 @@ password: user
 username: admin
 password: admin
 ```
-A shorten link with pin
+* A shorten link with pin (password is *1234*)
 [try out !](https://demo.thistine.com/shorturl/s/thistinebutlock)
 
 ## installing

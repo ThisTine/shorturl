@@ -24,8 +24,7 @@ password: user
 username: admin
 password: admin
 ```
-* A shorten link with pin (password is *1234*)
-[try out !](https://demo.thistine.com/shorturl/s/thistinebutlock)
+* A shorten link with pin (password is *1234*) - [try out !](https://demo.thistine.com/shorturl/s/thistinebutlock)
 
 ## installing
 * Import sql file to your mysqli database (than you can delete your sql folder)

@@ -14,12 +14,16 @@ This project is to use a  **simple PHP** to create a shorten url and QRcode gene
 [Demo](https://demo.thistine.com/shorturl) - A demo website
 
 * user account
-* *username: user*
-* *password: user*
+```
+username: user
+password: user
+```
 
 * admin account
-* *username: admin*
-* *password: admin*
+```
+username: admin
+password: admin
+```
 
 ## installing
 * Import sql file to your mysqli database (than you can delete your sql folder)

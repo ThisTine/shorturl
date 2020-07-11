@@ -1,6 +1,3 @@
-<?php
-$link = "$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]s/";
-?>
 <html>
 <head>
 <title>Create QR code</title>
@@ -48,40 +45,6 @@ $link = "$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]s/";
             }
             $("#qrimg").attr("src","https://chart.apis.google.com/chart?cht=qr&chs=250x250&chld=L|0&chl="+qrtext);
         });
-        $("#btw").click(function() { 
-            var qrtexturl = $("#qrcode").val();
-            if(qrtexturl.length == 0){
-                qrtexturl = "thistine.com";
-            }
-            var image = new Image();
-            image.crossOrigin = "anonymous";
-            image.src = "https://chart.apis.google.com/chart?cht=qr&chs=500x500&chld=L|0&choe=UTF-8&chl="+qrtexturl;
-            var fileName = image.src.split(/(\\|\/)/g).pop();
-            image.onload = function () {
-            var canvas = document.createElement('canvas');
-            canvas.width = this.naturalWidth;
-            canvas.height = this.naturalHeight;
-            canvas.getContext('2d').drawImage(this, 0, 0);
-            var blob;
-            if (image.src.indexOf(".jpg") > -1) {
-            blob = canvas.toDataURL("image/jpeg");
-            } else if (image.src.indexOf(".png") > -1) {
-            blob = canvas.toDataURL("image/png");
-            } else if (image.src.indexOf(".gif") > -1) {
-            blob = canvas.toDataURL("image/gif");
-            } else {
-            blob = canvas.toDataURL("image/png");
-            }
-            $("#btw").attr("href",blob);
-            $("#btw").attr("download", qrtexturl+".png");
-            $("#btw").trigger("click");
-            setTimeout(function(){
-            $("#btw").removeAttr("href");
-            $("#btw").removeAttr("download");
-            },1000);
-            };
-            return 0;
-        });
         $("#qrmenu").addClass("active");
     });
 </script>
@@ -117,4 +80,49 @@ $link = "$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]s/";
     </main>
 
 </body>
+<script>
+
+        function downloadClick(){
+            var qrtexturl = $("#qrcode").val();
+            if(qrtexturl.length == 0){
+                qrtexturl = "thistine.com";
+            }
+            var image = new Image();
+            image.crossOrigin = "anonymous";
+            image.src = "https://chart.apis.google.com/chart?cht=qr&chs=500x500&chld=L|0&choe=UTF-8&chl="+qrtexturl;
+            var fileName = image.src.split(/(\\|\/)/g).pop();
+            image.onload = function () {
+            var canvas = document.createElement('canvas');
+            canvas.width = this.naturalWidth;
+            canvas.height = this.naturalHeight;
+            canvas.getContext('2d').drawImage(this, 0, 0);
+            var blob;
+            if (image.src.indexOf(".jpg") > -1) {
+            blob = canvas.toDataURL("image/jpeg");
+            } else if (image.src.indexOf(".png") > -1) {
+            blob = canvas.toDataURL("image/png");
+            } else if (image.src.indexOf(".gif") > -1) {
+            blob = canvas.toDataURL("image/gif");
+            } else {
+            blob = canvas.toDataURL("image/png");
+            }
+            var element = document.createElement('a');
+            let filename2 = document.getElementById("qrcode").value
+            if(filename2 === null || filename2.length === 0){
+                filename2 = "thistine.com"
+            }
+            element.setAttribute('href', blob);
+            element.setAttribute('download',  filename2+".png");
+            element.style.display = 'none';
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+            };
+
+        }
+
+        const buttonbtw = document.getElementById("btw")
+        buttonbtw.addEventListener("click",downloadClick)
+
+</script>
 </html>
